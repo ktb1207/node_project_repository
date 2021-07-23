@@ -1,0 +1,12 @@
+{
+  "name": "nodestudyfrombook",
+  "version": "1.0.0",
+  "description": "study node start 2021-07-20",
+  "main": "index.js",
+  "scripts": {
+    "event": "node 01EventLoop.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ktb",
+  "license": "ISC"
+}
