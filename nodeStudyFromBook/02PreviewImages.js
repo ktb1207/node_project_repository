@@ -49,7 +49,7 @@ const server = http.createServer(function (req, res) {
     if (!err && stats.isDirectory) {
       let html = '<head><meta charset="utf-8"/></head><body><ul>';
       // 获取当前目录
-      const curDir = path.paseName(path.relative(__dirname, filePath));
+      const curDir = path.basename(path.relative(__dirname, filePath));
       // 读取该路径下的文件
       fs.readdir(filePath, function (err, files) {
         if (err) {
