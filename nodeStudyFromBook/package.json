@@ -9,6 +9,8 @@
     "previewImg": "node 02PreviewImages.js",
     "path": "node 03path.js",
     "fs": "node 04fs.js",
+    "url": "node 05url.js",
+    "os": "node 07os.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ktb",
