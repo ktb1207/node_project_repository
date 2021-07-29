@@ -5,7 +5,13 @@
  * 
  * */ 
 
-const path = require('path');
+// const path = require('path');
+import path, { dirname } from 'path';
+import {fileURLToPath} from 'url';
+// 处理全局变量 __filename
+const __filename = fileURLToPath(import.meta.url)
+// 处理全局变量 __dirname
+const __dirname = dirname(__filename);
 
 /**
  * 01
@@ -39,8 +45,6 @@ console.log('delimiter---:'+ path.delimiter)
  * 
 */
 console.log('dirname--:当前执行文件所在目录：' + path.dirname(__filename));
-console.log(__dirname)
-console.log(__filename)
 
 /**
  * 04

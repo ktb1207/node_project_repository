@@ -4,9 +4,10 @@
  * 主要用于对系统文件及目录进行读写操作
  * 
  * */ 
-
-import { access, constants } from 'fs';
-
+// const fs = require('fs');
+import fs from 'fs';
+const access = fs.access;
+const constants = fs.constants;
 const file = 'package.json';
 
 // 检查当前目录中是否存在该文件

@@ -56,11 +56,10 @@
  *
  */
 
-const fs = require('fs');
+// const fs = require('fs');
+import fs from 'fs';
 
 console.log('main line start');
-console.log('当前执行文件：' + __filename);
-console.log('当前执行文件所在目录：' + __dirname);
 // 主线程同步任务执行完毕，执行此处微任务
 process.nextTick(() => {
   console.log('main run nextTick');
