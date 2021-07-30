@@ -41,7 +41,9 @@ console.log('delimiter---:'+ path.delimiter)
  * @member path.dirname(path)
  * 
  * path: string;
+ * 注意：如果 path 不是字符串，则抛出 TypeError
  * 作用： 返回参数path的目录路径
+ * user/static/css/index.css  ----- user/static/css
  * 
 */
 console.log('dirname--:当前执行文件所在目录：' + path.dirname(__filename));
@@ -99,10 +101,10 @@ console.log('parse---: 当前执行文件详细信息：' + JSON.stringify(path.
  * 08
  * @member path.join([...paths])
  * ...paths:string路径片段的序列
- * 作用： 方法使用特定于平台的分隔符作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径。
+ * 作用： 方法---使用特定于平台的分隔符---作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径。
  * */ 
 
-console.log('join---:' + path.join('c:/', '/user', 'index.html'));
+console.log('join---:' + path.join('c:', 'user', 'index.html'));
 
 /**
  * 09 
@@ -130,9 +132,19 @@ console.log('normalize---:' + path.normalize('c://user////foo/index.html'))
  * 11
  * @member path.resolve([...paths])
  * 
- * ...paths: string路径片段序列
- * 作用：方法将路径或路径片段的序列解析为绝对路径。
+ * ...paths: string一系列字符串，不定长度参数
+ * 作用：方法将路径或路径片段的序列解析为绝对路径,返回，一个字符串。
+ * 注意：绝对路径，关键在于绝对路径
+ * ---- 解析的方式是从右向左，直到拼成一个绝对路径就自动停止。
+ * ---- 如果全部路径都拼完了，还没有形成绝对路径，那就把当前路径加上
+ * ---- 如果没有参数，path.resolve()返回当前路径
  * 
+ * 例：
+ * 1. path.resolve('/user/tempt/asd', '../css') // C:\user\tempt\css
+ * 2. path.resolve('/user/tempt', '../css') // C:\user\css
+ * 3. path.resolve('/foo', '/bar', 'baz') 返回/bar/baz
+ * 4. path.resolve() // C:\kongtbCode\node_project_repository\nodeStudyFromBook
+ * 5. path.resolve('./user/tempt', './static') // C:\kongtbCode\node_project_repository\nodeStudyFromBook\user\tempt\static
 */
 
 /**
