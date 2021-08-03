@@ -11,6 +11,7 @@
     "fs": "node 04fs.js",
     "url": "node 05url.js",
     "os": "node 07os.js",
+    "http": "node 08http.js",
     "handlefs": "node handleFsAndPath.js",
     "test": "node test.js"
   },
