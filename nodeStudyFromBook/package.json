@@ -13,6 +13,7 @@
     "os": "node 07os.js",
     "http": "node 08http.js",
     "handlefs": "node handleFsAndPath.js",
+    "stream": "node 09stream.js",
     "test": "node test.js"
   },
   "author": "ktb",
