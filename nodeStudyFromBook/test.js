@@ -1,3 +1,3 @@
-import path from 'path';
+import process from 'process';
 
-console.log(path.resolve('../user/tempt', './static'))
+console.log(process.cwd());
