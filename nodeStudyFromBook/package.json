@@ -14,6 +14,7 @@
     "http": "node 08http.js",
     "handlefs": "node handleFsAndPath.js",
     "stream": "node 09stream.js",
+    "events": "node 10event.js",
     "test": "node test.js"
   },
   "author": "ktb",
