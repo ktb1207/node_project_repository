@@ -15,6 +15,9 @@
     "handlefs": "node handleFsAndPath.js",
     "stream": "node 09stream.js",
     "events": "node 10event.js",
+    "net": "node 11net.js",
+    "netClient": "node 12netClient.js",
+    "dgram": "node 13dgram.js",
     "test": "node test.js"
   },
   "author": "ktb",
