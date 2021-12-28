@@ -41,3 +41,19 @@ udpServer.send('将要发送的消息', 41235, 'localhost', (err) => {
 })
 // 关闭底层套接字并停止监听其上的数据。
 udpServer.close()
+// 广播
+udpServer.on('listening', () => {
+  // 开启广播
+  udpServer.setBroadcast(true);
+  // 发送指定广播地址
+  udpServer.send('各位注意，这是广播消息', 88124, '1.1.1.255')
+})
+
+// 组播
+const multicalAddress = '224.10.10.1';
+udpServer.on('listening', () => {
+  // 添加组播
+  udpServer.addMembership(multicalAddress)
+  // 发送组播消息
+  udpServer.send('各位成员好，这是组内消息', 88124, multicalAddress);
+})
