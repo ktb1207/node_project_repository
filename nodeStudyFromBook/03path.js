@@ -137,7 +137,7 @@ console.log('normalize---:' + path.normalize('c://user////foo/index.html'))
  * 注意：绝对路径，关键在于绝对路径
  * ---- 解析的方式是从右向左，直到拼成一个绝对路径就自动停止。
  * ---- 如果全部路径都拼完了，还没有形成绝对路径，那就把当前路径加上
- * ---- 如果没有参数，path.resolve()返回当前路径
+ * ---- 如果没有参数，path.resolve()返回当前路径执行文件的工作目录跟路径
  * 
  * 例：
  * 1. path.resolve('/user/tempt/asd', '../css') // C:\user\tempt\css
