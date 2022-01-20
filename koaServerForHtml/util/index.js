@@ -8,3 +8,17 @@ export function resolvePath (...args) {
   const root = path.resolve(dirname, '../', ...args)
   return root;
 }
+
+export function isHtml (str) {
+  return /\.html$/.test(str);
+}
+export function isCss (str) {
+  return /\.css$/.test(str);
+}
+export function isJs (str) {
+  return /\.js$/.test(str);
+}
+
+export function LimtTimeAddNow(num) {
+  return new Date(new Date().getTime() + num).toUTCString();
+}

@@ -3,12 +3,26 @@ import staticServer from 'koa-static';
 import koaMount from 'koa-mount';
 import KoaRouter from '@koa/router';
 
-import { resolvePath } from './util/index.js';
+import { resolvePath, isHtml, isCss, isJs, LimtTimeAddNow } from './util/index.js';
 
 
 const app = new Koa();
 const router = new KoaRouter();
 const serverPort = 3001;
+
+app.use(async (ctx, next) => {
+  await next();
+  if (isHtml(ctx.url)) {
+    ctx.response.set('Cache-Control', ['max-age=3600', 'public'])
+    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
+  }
+  if (isJs(ctx.url)) {
+    console.log('js')
+  }
+  if(isCss(ctx.url)){
+    console.log('css')
+  }
+})
 
 app.use(staticServer(resolvePath('htmlFiles'), {
   index: 'index.html'
