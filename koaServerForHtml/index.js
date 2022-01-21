@@ -3,7 +3,7 @@ import staticServer from 'koa-static';
 import koaMount from 'koa-mount';
 import KoaRouter from '@koa/router';
 
-import { resolvePath, isHtml, isCss, isJs, LimtTimeAddNow, getFileLastEditDate, setEtag } from './util/index.js';
+import { resolvePath, isHtml, isCss, isJs, LimtTimeAddNow, setConsultCache } from './util/index.js';
 
 const app = new Koa();
 const router = new KoaRouter();
@@ -19,24 +19,28 @@ function resolveFileUrl(url) {
 }
 
 app.use(async (ctx, next) => {
-  await next();
   if (isHtml(ctx.url)) {
-    // ctx.response.set('Cache-Control', 'max-age=3600, public')
-    // ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
-    // ctx.response.set('Cache-Control', 'no-cache');
-    // ctx.response.set('Cache-Control', 'no-store');
-    ctx.response.set('Cache-Control', 'no-cache, public');
-    const fileLastChangeDateUtc = await getFileLastEditDate(resolveFileUrl(ctx.url));
-    // 设置协商缓存--Last-Modified
-    ctx.response.set('Last-Modified', fileLastChangeDateUtc);
-    setEtag(ctx);
+    // 强缓存
+    ctx.response.set('Cache-Control', 'no-cache');
+    // 协商缓存
+    const isAllow = await setConsultCache(ctx);
+    if (!isAllow) {
+      await next();
+    }
+  } else if(isCss(ctx.url)) {
+    await next();
+    ctx.response.set('Cache-Control', 'max-age=3600, public')
+    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
+  } else if (isJs(ctx.url)) {
+    await next();
+    ctx.response.set('Cache-Control', 'max-age=3600, public')
+    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
+  } else {
+    // 其它资源
+    await next();
+    ctx.response.set('Cache-Control', 'max-age=2592000') // 30d
+    ctx.response.set('Expires', LimtTimeAddNow(30*24*60*60*1000)) // 30d
   }
-  // if (isJs(ctx.url)) {
-  //   console.log('js')
-  // }
-  // if(isCss(ctx.url)){
-  //   console.log('css')
-  // }
 });
 
 app.use(
