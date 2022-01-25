@@ -9,14 +9,6 @@ const app = new Koa();
 const router = new KoaRouter();
 const serverPort = 3001;
 
-function resolveFileUrl(url) {
-  if (url) {
-    const reqUrlArr = url.split('/');
-    reqUrlArr.splice(0, 1);
-    return resolvePath('htmlFiles', ...reqUrlArr);
-  }
-  return '';
-}
 
 app.use(async (ctx, next) => {
   if (isHtml(ctx.url)) {
@@ -29,12 +21,12 @@ app.use(async (ctx, next) => {
     }
   } else if(isCss(ctx.url)) {
     await next();
-    ctx.response.set('Cache-Control', 'max-age=3600, public')
-    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
+    ctx.response.set('Cache-Control', 'max-age=3600, public')  // 1h
+    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000)) // 1h
   } else if (isJs(ctx.url)) {
     await next();
-    ctx.response.set('Cache-Control', 'max-age=3600, public')
-    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000))
+    ctx.response.set('Cache-Control', 'max-age=3600, public') // 1h
+    ctx.response.set('Expires', LimtTimeAddNow(60*60*1000)) // 1h
   } else {
     // 其它资源
     await next();
