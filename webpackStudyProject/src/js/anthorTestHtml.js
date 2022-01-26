@@ -1,6 +1,5 @@
 import { isHtml } from '../utils/index.js';
 import { defineComponent } from 'vue';
-('vue');
 export function showAnthorTestHtml(target) {
   var testStr = 'school.css';
   const divElement = document.createElement('div');

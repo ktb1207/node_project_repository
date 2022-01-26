@@ -3,18 +3,33 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: path.resolve(__dirname, 'src', 'index.js'),
   devtool: 'inline-source-map',
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    pathinfo: false
+  },
+  resolve: {
+    // 顺序解析不带有后缀名文件
+    extensions: ['.js', '.ts', '.tsx', '.jsx'],
+    // 指定node_module目录
+    modules: [path.resolve(__dirname, 'node_modules')],
+    // 
+    symlinks: false
   },
   optimization: {
+    // 将 runtime 代码拆分为一个单独的 chunk
+    runtimeChunk: 'single',
+    // 模块标识符 确保构建前后没有发生变化的模块hash值不变
+    moduleIds: 'deterministic',
+    // tree shaking
+    usedExports: true,
+    // 
     splitChunks: {
       chunks: 'all',
-      minSize: 20000,
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -35,6 +50,9 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+        include: path.resolve(__dirname, 'src'),
+        // 标记此loader包含副作用
+        sideEffects: true
       },
     ],
   },
@@ -47,9 +65,9 @@ module.exports = {
       // 输出文件名称，默认index.html
       filename: 'index.html',
     }),
-    new BundleAnalyzerPlugin({
-      analyzerPort: 9001,
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerPort: 9001,
+    // }),
   ],
   devServer: {
     // 静态文件目录
@@ -73,4 +91,7 @@ module.exports = {
     // 代理
     proxy: {},
   },
+  performance: {
+    hints: false,
+  }
 };

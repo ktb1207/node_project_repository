@@ -1,6 +1,5 @@
 import { isHtml } from '../utils/index.js';
-import { defineComponent } from 'vue';
-('vue');
+// import { defineComponent } from 'vue';
 export function showTestHtml(target) {
   var testStr = 'school.html';
   const divElement = document.createElement('div');
@@ -13,6 +12,6 @@ export function showTestHtml(target) {
 
   divElement.appendChild(p1);
   divElement.appendChild(p2);
-  console.log(defineComponent);
+  // console.log(defineComponent);
   target.appendChild(divElement);
 }
