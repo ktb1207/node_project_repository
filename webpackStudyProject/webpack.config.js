@@ -10,15 +10,15 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    pathinfo: false
+    pathinfo: false,
   },
   resolve: {
     // 顺序解析不带有后缀名文件
     extensions: ['.js', '.ts', '.tsx', '.jsx'],
     // 指定node_module目录
     modules: [path.resolve(__dirname, 'node_modules')],
-    // 
-    symlinks: false
+    //
+    symlinks: false,
   },
   optimization: {
     // 将 runtime 代码拆分为一个单独的 chunk
@@ -27,7 +27,7 @@ module.exports = {
     moduleIds: 'deterministic',
     // tree shaking
     usedExports: true,
-    // 
+    //
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -52,7 +52,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
         include: path.resolve(__dirname, 'src'),
         // 标记此loader包含副作用
-        sideEffects: true
+        sideEffects: true,
       },
     ],
   },
@@ -76,6 +76,7 @@ module.exports = {
     },
     // gzip
     compress: true,
+    historyApiFallback: true,
     port: 9000,
     // 启用 webpack 的 热模块替换 特性
     hot: true,
@@ -93,5 +94,5 @@ module.exports = {
   },
   performance: {
     hints: false,
-  }
+  },
 };
