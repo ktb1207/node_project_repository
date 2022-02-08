@@ -2,6 +2,7 @@ import './styles/main.css';
 import {showTestHtml} from './js/testHtml.js';
 import {showAnthorTestHtml} from './js/anthorTestHtml.js';
 window.onload = function () {
+  console.log('render start')
   const target = document.getElementById('app');
   function showTitle() {
     const element = document.createElement('h3');
@@ -15,4 +16,5 @@ window.onload = function () {
   showTestHtml(target);
   // 检测2
   showAnthorTestHtml(target);
+  console.log('render end')
 };

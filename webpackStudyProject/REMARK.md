@@ -1,14 +1,15 @@
 ### webpack 随记
 
 1. webpack默认采用production环境
-2. production与development环境区别：待总结
+2. production与development环境区别：
+- production默认启用TerserPlugin来压缩输出。
 
 3. loader支持链式调用，从右向左被依次调用，第一个loader将其处理的结果传递给左侧下一个loader，最后一个loader需返回javascript资源。
 4. 内置Asset Modules处理图片、字体资源。
 
 5. 代码分离方案：optimization.SplitChunksPlugin
-- 默认只对node_modules内的模块进行提取。
-- chunks提供三个值：async, initial, all,默认值async
+   - 默认只对node_modules内的模块进行提取。
+   - chunks提供三个值：async, initial, all,默认值async
    + async: 对于动态加载的模块，默认配置会将该模块单独打包。
    ```js
   // 使用import动态加载
@@ -50,3 +51,10 @@
 - Tree Shaking
    + usedExports: true仅在打包输出bundle中标记未使用模块、
    + package.json添加字段sideEffects:false 标记无副作用
+   + 仅production环境真正执行无用代码删除
+
+8. webpack依赖Nodejs并遵循CommonJS模块规范。
+
+9. 关于loader
+   - 概述：loader 用于对引入资源模块的源代码进行转换，使得webpack能够处理其它非js文件。
+   - 本质：loader 是导出为一个函数的 node 模块

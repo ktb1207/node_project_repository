@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const DoneSuccessPlugin = require('./plugins-dev/done-success-plugin.js');
 
 module.exports = {
   mode: 'development',
@@ -16,9 +17,16 @@ module.exports = {
     // 顺序解析不带有后缀名文件
     extensions: ['.js', '.ts', '.tsx', '.jsx'],
     // 指定node_module目录
-    modules: [path.resolve(__dirname, 'node_modules')],
+    modules: [
+      path.resolve(__dirname, 'node_modules')
+    ],
     //
     symlinks: false,
+  },
+  resolveLoader: {
+    alias: {
+      removeConsoleLoader: path.resolve(__dirname, 'loaders-dev/remove-console-loader.js'),
+    }
   },
   optimization: {
     // 将 runtime 代码拆分为一个单独的 chunk
@@ -48,6 +56,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/i,
+        use: 'removeConsoleLoader',
+        include: path.resolve(__dirname, 'src')
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
         include: path.resolve(__dirname, 'src'),
@@ -68,6 +81,9 @@ module.exports = {
     // new BundleAnalyzerPlugin({
     //   analyzerPort: 9001,
     // }),
+    new DoneSuccessPlugin({
+      msg: 'All build success'
+    })
   ],
   devServer: {
     // 静态文件目录
