@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DoneSuccessPlugin = require('./plugins-dev/done-success-plugin.js');
+const OutputAssetsList = require('./plugins-dev/output-assets-list.js');
 
 module.exports = {
   mode: 'development',
@@ -83,7 +84,8 @@ module.exports = {
     // }),
     new DoneSuccessPlugin({
       msg: 'All build success'
-    })
+    }),
+    new OutputAssetsList()
   ],
   devServer: {
     // 静态文件目录
