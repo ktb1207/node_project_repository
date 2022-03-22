@@ -1,0 +1,13 @@
+{
+  "name": "algorithmproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bubbling": "node arraySort/bubblingSort.js",
+    "selection": "node arraySort/selectionSort.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
