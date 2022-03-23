@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bubbling": "node arraySort/bubblingSort.js",
-    "selection": "node arraySort/selectionSort.js"
+    "selection": "node arraySort/selectionSort.js",
+    "insert": "node arraySort/insertSort.js"
   },
   "author": "",
   "license": "ISC"
