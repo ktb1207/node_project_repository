@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bubbling": "node arraySort/bubblingSort.js",
     "selection": "node arraySort/selectionSort.js",
-    "insert": "node arraySort/insertSort.js"
+    "insert": "node arraySort/insertSort.js",
+    "quick": "node arraySort/quickSort.js",
+    "jssort": "node arraySort/jsSort.js",
+    "reduce": "node arraySort/reduce.js"
   },
   "author": "",
   "license": "ISC"
