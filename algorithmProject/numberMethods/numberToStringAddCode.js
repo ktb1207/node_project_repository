@@ -21,7 +21,6 @@ function numberToStringAddCode (num, code = ',') {
   }
   pr[0] > 0 ? pr.unshift(0) : null;
   for(let j = 0; j < pr.length; j++) {
-    debugger;
     if (j ===0) {
       res = res + sNum.slice(pr[j], pr[j + 1])
     } else {
