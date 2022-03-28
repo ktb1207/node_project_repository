@@ -10,26 +10,30 @@ function numberToStringAddCode (num, code = ',') {
   }
   const sNum = String(num);
   let step = 0;
-  const pr = [];
+  // 记录分隔符位置
+  const codeInsertPosition = [];
   let res = '';
+  // 倒序记录分隔符位置
   for (let i = sNum.length - 1; i >= 0; i--) {
     step += 1;
     if (step%3 === 0) {
-      pr.unshift(i);
+      codeInsertPosition.unshift(i);
       step = 0;
     }
   }
-  pr[0] > 0 ? pr.unshift(0) : null;
-  for(let j = 0; j < pr.length; j++) {
+  // 分隔符是否从第一位算起
+  codeInsertPosition[0] > 0 ? codeInsertPosition.unshift(0) : null;
+  for(let j = 0; j < codeInsertPosition.length; j++) {
     if (j ===0) {
-      res = res + sNum.slice(pr[j], pr[j + 1])
+      res = res + sNum.slice(codeInsertPosition[j], codeInsertPosition[j + 1])
     } else {
-      res = res + code + sNum.slice(pr[j], pr[j + 1])
+      res = res + code + sNum.slice(codeInsertPosition[j], codeInsertPosition[j + 1])
     }
   }
-  console.log(res)
 }
 
 const aNum = 9681245;
 
-numberToStringAddCode(aNum)
+const res = numberToStringAddCode(aNum);
+
+console.log(res);
