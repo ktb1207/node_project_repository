@@ -12,8 +12,7 @@
     "jssort": "node arraySort/jsSort.js",
     "reduce": "node arraySort/reduce.js",
     "varlet": "node forVarLet/index.js",
-    "numbertostring": "node numberMethods/numberToStringAddCode.js",
-    "stringfn": "node function/stringFunction.js"
+    "numbertostring": "node numberMethods/numberToStringAddCode.js"
   },
   "author": "",
   "license": "ISC"
