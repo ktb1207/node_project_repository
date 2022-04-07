@@ -13,7 +13,8 @@
     "reduce": "node arraySort/reduce.js",
     "varlet": "node forVarLet/index.js",
     "numbertostring": "node numberMethods/numberToStringAddCode.js",
-    "parserHtml": "node htmlParser/parserHtmlToObject.js"
+    "parserHtml": "node htmlParser/parserHtmlToObject.js",
+    "tree": "node treeMethod/index.js"
   },
   "author": "",
   "license": "ISC"
